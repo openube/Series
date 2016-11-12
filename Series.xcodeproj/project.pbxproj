@@ -15,6 +15,8 @@
 		76FDE4F51DD75F3F00FE7CF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76FDE4F31DD75F3F00FE7CF0 /* LaunchScreen.storyboard */; };
 		76FDE5001DD75F3F00FE7CF0 /* SeriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE4FF1DD75F3F00FE7CF0 /* SeriesTests.swift */; };
 		76FDE50B1DD75F3F00FE7CF0 /* SeriesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE50A1DD75F3F00FE7CF0 /* SeriesUITests.swift */; };
+		76FDE51E1DD75FE100FE7CF0 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE51C1DD75FE100FE7CF0 /* ApiClient.swift */; };
+		76FDE51F1DD75FE100FE7CF0 /* JSONExtractable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE51D1DD75FE100FE7CF0 /* JSONExtractable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		76FDE5061DD75F3F00FE7CF0 /* SeriesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeriesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FDE50A1DD75F3F00FE7CF0 /* SeriesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesUITests.swift; sourceTree = "<group>"; };
 		76FDE50C1DD75F3F00FE7CF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76FDE51C1DD75FE100FE7CF0 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		76FDE51D1DD75FE100FE7CF0 /* JSONExtractable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtractable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 		76FDE5181DD75F5E00FE7CF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				76FDE51B1DD75F9E00FE7CF0 /* ApiClient Model Protocols */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -150,6 +155,15 @@
 				76FDE4EC1DD75F3F00FE7CF0 /* DetailViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		76FDE51B1DD75F9E00FE7CF0 /* ApiClient Model Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				76FDE51C1DD75FE100FE7CF0 /* ApiClient.swift */,
+				76FDE51D1DD75FE100FE7CF0 /* JSONExtractable.swift */,
+			);
+			name = "ApiClient Model Protocols";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +306,8 @@
 				76FDE4ED1DD75F3F00FE7CF0 /* DetailViewController.swift in Sources */,
 				76FDE4EB1DD75F3F00FE7CF0 /* MasterViewController.swift in Sources */,
 				76FDE4E91DD75F3F00FE7CF0 /* AppDelegate.swift in Sources */,
+				76FDE51E1DD75FE100FE7CF0 /* ApiClient.swift in Sources */,
+				76FDE51F1DD75FE100FE7CF0 /* JSONExtractable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
