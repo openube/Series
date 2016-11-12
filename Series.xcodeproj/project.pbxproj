@@ -100,11 +100,10 @@
 			isa = PBXGroup;
 			children = (
 				76FDE4E81DD75F3F00FE7CF0 /* AppDelegate.swift */,
-				76FDE4EA1DD75F3F00FE7CF0 /* MasterViewController.swift */,
-				76FDE4EC1DD75F3F00FE7CF0 /* DetailViewController.swift */,
-				76FDE4EE1DD75F3F00FE7CF0 /* Main.storyboard */,
+				76FDE5181DD75F5E00FE7CF0 /* Model */,
+				76FDE51A1DD75F6C00FE7CF0 /* Controllers */,
+				76FDE5191DD75F6600FE7CF0 /* Views */,
 				76FDE4F11DD75F3F00FE7CF0 /* Assets.xcassets */,
-				76FDE4F31DD75F3F00FE7CF0 /* LaunchScreen.storyboard */,
 				76FDE4F61DD75F3F00FE7CF0 /* Info.plist */,
 			);
 			path = Series;
@@ -126,6 +125,31 @@
 				76FDE50C1DD75F3F00FE7CF0 /* Info.plist */,
 			);
 			path = SeriesUITests;
+			sourceTree = "<group>";
+		};
+		76FDE5181DD75F5E00FE7CF0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		76FDE5191DD75F6600FE7CF0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				76FDE4EE1DD75F3F00FE7CF0 /* Main.storyboard */,
+				76FDE4F31DD75F3F00FE7CF0 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		76FDE51A1DD75F6C00FE7CF0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				76FDE4EA1DD75F3F00FE7CF0 /* MasterViewController.swift */,
+				76FDE4EC1DD75F3F00FE7CF0 /* DetailViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
