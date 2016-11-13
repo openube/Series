@@ -14,7 +14,7 @@ import Foundation
 protocol ApiClient {
     
     // This needs to be implemented for each client conforming to ApiClient
-    var apiEndpoint: String { get set }
+    var apiEndpoint: String { get }
     
     // A functional default implementation of all methods is provided below
     func clientURLRequest(_ path: String, bodyParams params: [String: Any]?, headers: [String: String]?) -> URLRequest

@@ -12,8 +12,15 @@ import UIKit
 
 struct TraktClient: ApiClient {
     
-//    var apiEndpoint = "https://private-anon-7d4f25ca89-trakt.apiary-mock.com" // MOCK ENDPOINT
-    var apiEndpoint = "https://api.trakt.tv"
+    var useMockTraktEndpoint = false
+    
+    var apiEndpoint: String {
+        if useMockTraktEndpoint {
+            return "https://private-anon-7d4f25ca89-trakt.apiary-mock.com"
+        } else {
+            return "https://api.trakt.tv"
+        }
+    }
     
     let clientID = "4e576144747b7411b2f7029feb039edbf6baaca98b43b22db407a611745c32bf"
     let clientSecret = "b2b57762b71b57a8e66192ebb392a230c5d8ff9185beb204ab43ad6c9fce5f2b"
