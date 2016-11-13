@@ -36,26 +36,13 @@ extension ApiClient {
     func clientURLRequest(_ path: String, params: [String: Any]? = nil, headers: [String: String]? = nil) -> URLRequest {
         var request = URLRequest(url: (URL(string: apiEndpoint)?.appendingPathComponent(path))!)
         if let params = params,
-            let paramString = convertParams(params) {
+            let paramString = convert(params) {
             print(paramString)
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.httpBody = paramString.data(using: String.Encoding.utf8)
         }
         return request
     }
-    
-    // Converts a dictionary of parameters to a single string 
-    func convertParams(_ params: [String: Any]) -> String? {
-        var paramString = ""
-        for (key, value) in params {
-            if let escapedKey = key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                let escapedValue = (value as AnyObject).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-                paramString += "\(escapedKey)=\(escapedValue)&"
-            }
-        }
-        return paramString
-    }
-    
     // MARK: (2) Endpoints for POST, PUT and GET requests
     func post(_ request: URLRequest, completion: @escaping (_ success: Bool, _ object: [String: Any]?) -> ()) {
         dataTask(request, method: "POST", completion: completion)
@@ -94,6 +81,23 @@ extension ApiClient {
                 }
             }
             }.resume()
+    }
+    
+}
+
+// MARK: - Helper methods
+extension ApiClient {
+    
+    // Converts a dictionary of parameters to a single string 
+    func convert(_ params: [String: Any]) -> String? {
+        var paramString = ""
+        for (key, value) in params {
+            if let escapedKey = key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                let escapedValue = (value as AnyObject).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                paramString += "\(escapedKey)=\(escapedValue)&"
+            }
+        }
+        return paramString
     }
     
 }

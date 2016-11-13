@@ -25,7 +25,7 @@ struct TraktClient: ApiClient {
                       "client_id": clientID,
                       "redirect_uri": "urn:ietf:wg:oauth:2.0:oob",
                       "state": "test"]
-        if let encodedParams = convertParams(params) {
+        if let encodedParams = convert(params) {
             let authUrlString = authEndpoint.appending("?\(encodedParams)")
             let authUrl = URL(string: authUrlString)
             return authUrl
