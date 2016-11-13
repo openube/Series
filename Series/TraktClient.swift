@@ -57,7 +57,10 @@ struct TraktClient: ApiClient {
             if !success {
                 completion(false, "There was an error while requesting user access token")
             } else {
+                let accessToken = object?["access_token"] as! String
                 completion(true, "Access token received successfully with access token: \(object?["access_token"])")
+                let defaults = UserDefaults.standard
+                defaults.set(accessToken, forKey: "accessToken")
             }
             
         }
