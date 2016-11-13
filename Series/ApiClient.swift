@@ -17,7 +17,7 @@ protocol ApiClient {
     var apiEndpoint: String { get set }
     
     // A functional default implementation of all methods is provided below
-    func clientURLRequest(_ path: String, params: [String: Any]?) -> URLRequest
+    func clientURLRequest(_ path: String, params: [String: Any]?, headers: [String: String]?) -> URLRequest
     func post(_ request: URLRequest, completion: @escaping (_ success: Bool, _ object: [String: Any]?) -> ())
     func put(_ request: URLRequest, completion: @escaping (_ success: Bool, _ object: [String: Any]?) -> ())
     func get(_ request: URLRequest, completion: @escaping (_ success: Bool, _ object: [String: Any]?) -> ())
@@ -33,20 +33,27 @@ extension ApiClient {
     //  (3) submits a request to the server and serializes the responce (assuming JSON format)
     
     // MARK: (1) Create a URL request
-    func clientURLRequest(_ path: String, params: [String: Any]? = nil) -> URLRequest {
-        var request = URLRequest(url: URL(string: apiEndpoint + path)!)
-        if let params = params {
-            var paramString = ""
-            for (key, value) in params {
-                let escapedKey = key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                let escapedValue = (value as AnyObject).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                paramString += "\(escapedKey)=\(escapedValue)&"
-            }
-            
+    func clientURLRequest(_ path: String, params: [String: Any]? = nil, headers: [String: String]? = nil) -> URLRequest {
+        var request = URLRequest(url: (URL(string: apiEndpoint)?.appendingPathComponent(path))!)
+        if let params = params,
+            let paramString = convertParams(params) {
+            print(paramString)
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.httpBody = paramString.data(using: String.Encoding.utf8)
         }
         return request
+    }
+    
+    // Converts a dictionary of parameters to a single string 
+    func convertParams(_ params: [String: Any]) -> String? {
+        var paramString = ""
+        for (key, value) in params {
+            if let escapedKey = key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                let escapedValue = (value as AnyObject).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                paramString += "\(escapedKey)=\(escapedValue)&"
+            }
+        }
+        return paramString
     }
     
     // MARK: (2) Endpoints for POST, PUT and GET requests
@@ -76,6 +83,7 @@ extension ApiClient {
         
         session.dataTask(with: request) { (data, response, error) -> Void in
             if let data = data {
+                print(data)
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
                 if let json = json as? [String: Any],
                     let response = response as? HTTPURLResponse,

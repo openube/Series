@@ -17,6 +17,8 @@
 		76FDE50B1DD75F3F00FE7CF0 /* SeriesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE50A1DD75F3F00FE7CF0 /* SeriesUITests.swift */; };
 		76FDE51E1DD75FE100FE7CF0 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE51C1DD75FE100FE7CF0 /* ApiClient.swift */; };
 		76FDE51F1DD75FE100FE7CF0 /* JSONExtractable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE51D1DD75FE100FE7CF0 /* JSONExtractable.swift */; };
+		76FDE5211DD760F500FE7CF0 /* TraktClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE5201DD760F500FE7CF0 /* TraktClient.swift */; };
+		76FDE5251DD76AF100FE7CF0 /* TraktClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE5241DD76AF100FE7CF0 /* TraktClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		76FDE50C1DD75F3F00FE7CF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76FDE51C1DD75FE100FE7CF0 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		76FDE51D1DD75FE100FE7CF0 /* JSONExtractable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtractable.swift; sourceTree = "<group>"; };
+		76FDE5201DD760F500FE7CF0 /* TraktClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktClient.swift; sourceTree = "<group>"; };
+		76FDE5241DD76AF100FE7CF0 /* TraktClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				76FDE4FF1DD75F3F00FE7CF0 /* SeriesTests.swift */,
+				76FDE5241DD76AF100FE7CF0 /* TraktClientTests.swift */,
 				76FDE5011DD75F3F00FE7CF0 /* Info.plist */,
 			);
 			path = SeriesTests;
@@ -134,6 +139,7 @@
 		76FDE5181DD75F5E00FE7CF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				76FDE5201DD760F500FE7CF0 /* TraktClient.swift */,
 				76FDE51B1DD75F9E00FE7CF0 /* ApiClient Model Protocols */,
 			);
 			name = Model;
@@ -306,6 +312,7 @@
 				76FDE4ED1DD75F3F00FE7CF0 /* DetailViewController.swift in Sources */,
 				76FDE4EB1DD75F3F00FE7CF0 /* MasterViewController.swift in Sources */,
 				76FDE4E91DD75F3F00FE7CF0 /* AppDelegate.swift in Sources */,
+				76FDE5211DD760F500FE7CF0 /* TraktClient.swift in Sources */,
 				76FDE51E1DD75FE100FE7CF0 /* ApiClient.swift in Sources */,
 				76FDE51F1DD75FE100FE7CF0 /* JSONExtractable.swift in Sources */,
 			);
@@ -316,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76FDE5001DD75F3F00FE7CF0 /* SeriesTests.swift in Sources */,
+				76FDE5251DD76AF100FE7CF0 /* TraktClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
