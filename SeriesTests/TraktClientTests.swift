@@ -19,21 +19,4 @@ class TraktClientTests: XCTestCase {
         trakt = TraktClient()
     }
     
-    func testAuthorizeApplication() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
-        let expect = expectation(description: "Response of GET request received")
-        var result = false
-        trakt.authorizeApplication { (success, string) in
-            result = success
-            print(string!)
-            expect.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5, handler: nil)
-        
-        XCTAssert(result, "Authorization not successful")
-    }
-    
 }
