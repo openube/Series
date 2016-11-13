@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7600A0D51DD8786C00BD5C12 /* TraktLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7600A0D41DD8786C00BD5C12 /* TraktLoginViewController.swift */; };
 		76FDE4E91DD75F3F00FE7CF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE4E81DD75F3F00FE7CF0 /* AppDelegate.swift */; };
-		76FDE4EB1DD75F3F00FE7CF0 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE4EA1DD75F3F00FE7CF0 /* MasterViewController.swift */; };
-		76FDE4ED1DD75F3F00FE7CF0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDE4EC1DD75F3F00FE7CF0 /* DetailViewController.swift */; };
 		76FDE4F01DD75F3F00FE7CF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76FDE4EE1DD75F3F00FE7CF0 /* Main.storyboard */; };
 		76FDE4F21DD75F3F00FE7CF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76FDE4F11DD75F3F00FE7CF0 /* Assets.xcassets */; };
 		76FDE4F51DD75F3F00FE7CF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76FDE4F31DD75F3F00FE7CF0 /* LaunchScreen.storyboard */; };
@@ -39,10 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7600A0D41DD8786C00BD5C12 /* TraktLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktLoginViewController.swift; sourceTree = "<group>"; };
 		76FDE4E51DD75F3F00FE7CF0 /* Series.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Series.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FDE4E81DD75F3F00FE7CF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		76FDE4EA1DD75F3F00FE7CF0 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		76FDE4EC1DD75F3F00FE7CF0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		76FDE4EF1DD75F3F00FE7CF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		76FDE4F11DD75F3F00FE7CF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76FDE4F41DD75F3F00FE7CF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -157,8 +155,7 @@
 		76FDE51A1DD75F6C00FE7CF0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				76FDE4EA1DD75F3F00FE7CF0 /* MasterViewController.swift */,
-				76FDE4EC1DD75F3F00FE7CF0 /* DetailViewController.swift */,
+				7600A0D41DD8786C00BD5C12 /* TraktLoginViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -309,8 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76FDE4ED1DD75F3F00FE7CF0 /* DetailViewController.swift in Sources */,
-				76FDE4EB1DD75F3F00FE7CF0 /* MasterViewController.swift in Sources */,
+				7600A0D51DD8786C00BD5C12 /* TraktLoginViewController.swift in Sources */,
 				76FDE4E91DD75F3F00FE7CF0 /* AppDelegate.swift in Sources */,
 				76FDE5211DD760F500FE7CF0 /* TraktClient.swift in Sources */,
 				76FDE51E1DD75FE100FE7CF0 /* ApiClient.swift in Sources */,
@@ -564,6 +560,7 @@
 				76FDE5111DD75F3F00FE7CF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		76FDE5121DD75F3F00FE7CF0 /* Build configuration list for PBXNativeTarget "SeriesTests" */ = {
 			isa = XCConfigurationList;
@@ -572,6 +569,7 @@
 				76FDE5141DD75F3F00FE7CF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		76FDE5151DD75F3F00FE7CF0 /* Build configuration list for PBXNativeTarget "SeriesUITests" */ = {
 			isa = XCConfigurationList;
@@ -580,6 +578,7 @@
 				76FDE5171DD75F3F00FE7CF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
