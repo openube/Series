@@ -32,6 +32,9 @@ class TraktLoginViewController: UIViewController {
     
     @IBAction func submitPinButtonPressed(_ sender: UIButton) {
         print("Submitted PIN: \(pinTextField.text)")
+        trakt.requestAccessToken(withUserAuthorizationCode: pinTextField.text!) { (success, message: String?) in
+            print("Request \(success ? "succeeded" : "failed") with message: \(message)")
+        }
     }
     
     func presentAuthenticationView() {

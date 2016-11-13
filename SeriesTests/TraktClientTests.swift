@@ -19,4 +19,13 @@ class TraktClientTests: XCTestCase {
         trakt = TraktClient()
     }
     
+//    func testRequestAuthorization() {
+//        let expect = expectation(description: "Response received")
+//        trakt.requestAuthorization { (success, message) in
+//            expect.fulfill()
+//        }
+//        waitForExpectations(timeout: 5, handler: nil)
+//        
+//    }
+    
 }
