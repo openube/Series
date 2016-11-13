@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import SafariServices
-import UIKit
 
 struct TraktClient: ApiClient {
     
