@@ -39,25 +39,6 @@ struct TraktClient: ApiClient {
         }
     }
     
-//    func requestAuthorization(completion: @escaping (_ success: Bool, _ message: String?) -> ()) {
-//        let path = "oauth/authorize"
-//        let params = ["response_type": "code",
-//                      "client_id": clientID,
-//                      "redirect_uri": "com.CLoutas.Series"/*,
-//                      "state": "test"*/]
-//        guard let paramsString = convert(params),
-//            let url = URL(string: (apiEndpoint + "/" + path + "?" + paramsString))
-//            else {
-//                completion(false, "Authorization request failed during setup.")
-//                return
-//        }
-//        var request = URLRequest(url: url)
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        get(request) { (success, object: [String : Any]?) in
-//            
-//        }
-//    }
-    
     func requestAccessToken(withUserAuthorizationCode code: String, completion: @escaping (_ success: Bool, _ message: String?) -> ()) {
         let params = ["code": code,
                       "client_id": clientID,
@@ -76,23 +57,3 @@ struct TraktClient: ApiClient {
     }
     
 }
-
-// MARK: - Sample public methods
-//func login(_ email: String, password: String, completion: @escaping (_ success: Bool, _ message: String?) -> ()) {
-//    let loginObject = ["email": email, "password": password]
-//    
-//    post(clientURLRequest("auth/local", params: loginObject as [String: Any]?)) { (success, object) -> () in
-//        
-//        DispatchQueue.main.async(execute: { () -> Void in
-//            if success {
-//                completion(true, nil)
-//            } else {
-//                var message = "there was an error"
-//                if let object = object, let passedMessage = (object as AnyObject)["message"] as? String {
-//                    message = passedMessage
-//                }
-//                completion(true, message)
-//            }
-//        })
-//    }
-//}
