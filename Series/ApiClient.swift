@@ -17,7 +17,7 @@ protocol ApiClient {
     var apiEndpoint: String { get set }
     
     // A functional default implementation of all methods is provided below
-    func clientURLRequest(_ path: String, params: [String: Any]?, headers: [String: String]?) -> URLRequest
+    func clientURLRequest(_ path: String, bodyParams params: [String: Any]?, headers: [String: String]?) -> URLRequest
     func post(_ request: URLRequest, completion: @escaping (_ success: Bool, _ object: [String: Any]?) -> ())
     func put(_ request: URLRequest, completion: @escaping (_ success: Bool, _ object: [String: Any]?) -> ())
     func get(_ request: URLRequest, completion: @escaping (_ success: Bool, _ object: [String: Any]?) -> ())
@@ -33,16 +33,19 @@ extension ApiClient {
     //  (3) submits a request to the server and serializes the responce (assuming JSON format)
     
     // MARK: (1) Create a URL request
-    func clientURLRequest(_ path: String, params: [String: Any]? = nil, headers: [String: String]? = nil) -> URLRequest {
+    func clientURLRequest(_ path: String, bodyParams params: [String: Any]? = nil, headers: [String: String]? = ["application/json": "application/json"]) -> URLRequest {
         var request = URLRequest(url: (URL(string: apiEndpoint)?.appendingPathComponent(path))!)
-        if let params = params,
-            let paramString = convert(params) {
-            print(paramString)
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        if let params = params, let paramString = convert(params) {
             request.httpBody = paramString.data(using: String.Encoding.utf8)
+        }
+        if let headers = headers {
+            for (headerField, value) in headers {
+                request.setValue(value, forHTTPHeaderField: headerField)
+            }
         }
         return request
     }
+    
     // MARK: (2) Endpoints for POST, PUT and GET requests
     func post(_ request: URLRequest, completion: @escaping (_ success: Bool, _ object: [String: Any]?) -> ()) {
         dataTask(request, method: "POST", completion: completion)
