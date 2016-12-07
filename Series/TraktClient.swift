@@ -23,7 +23,7 @@ struct TraktClient: ApiClient {
     let clientID = "4e576144747b7411b2f7029feb039edbf6baaca98b43b22db407a611745c32bf"
     let clientSecret = "b2b57762b71b57a8e66192ebb392a230c5d8ff9185beb204ab43ad6c9fce5f2b"
     
-    var defaultHeaders: [String: String] {
+    var requiredHeaders: [String: String] {
         return ["trakt-api-version": "2",
                 "trakt-api-key": clientID,
                 "Content-Type":"application/json"]
@@ -50,14 +50,12 @@ struct TraktClient: ApiClient {
                       "client_secret": clientSecret,
                       "redirect_uri": "urn:ietf:wg:oauth:2.0:oob",
                       "grant_type": "authorization_code"]
-        let request = clientURLRequest("oauth/token", bodyParams: params)
+        let request = clientURLRequest("oauth/token", bodyParams: params, headers: requiredHeaders)
         post(request) { (success: Bool, object: [String : Any]?) in
             if !success {
                 completion(false, "There was an error while requesting user access token")
             } else {
-                let accessToken = object?["access_token"] as! String
-                let defaults = UserDefaults.standard
-                defaults.set(accessToken, forKey: "accessToken")
+                self.saveTokens(from: object!)
                 completion(true, "Access token received successfully with access token: \(object?["access_token"])")
             }
             
@@ -66,27 +64,33 @@ struct TraktClient: ApiClient {
     
     func refreshAccessToken(completion: @escaping (_ success: Bool, _ message: String?) -> ()) {
         let defaults = UserDefaults.standard
-        guard let oldAccessToken = defaults.value(forKey: "accessToken") as? String else {
+        guard let refreshToken = defaults.value(forKey: "refreshToken") as? String else {
             completion(false, "Refresh access token: Error while reading the old token")
             return
         }
-        let params = ["refresh_token": oldAccessToken,
+        let params = ["refresh_token": refreshToken,
                       "client_id": clientID,
                       "client_secret": clientSecret,
                       "redirect_uri": "urn:ietf:wg:oauth:2.0:oob",
                       "grant_type": "refresh_token"]
-        let request = clientURLRequest("oauth/token", bodyParams: params, headers: defaultHeaders)
+        
+        let request = clientURLRequest("oauth/token", bodyParams: params, headers: requiredHeaders)
         post(request) { (success: Bool, object: [String : Any]?) in
             if !success {
                 completion(false, "There was an error while refreshing the user access token")
             } else {
-                let accessToken = object?["access_token"] as! String
-                let defaults = UserDefaults.standard
-                defaults.set(accessToken, forKey: "accessToken")
+                self.saveTokens(from: object!)
                 completion(true, "Access token refreshed successfully with access token: \(object?["access_token"])")
             }
-            
         }
+    }
+    
+    func saveTokens(from object: [String : Any]) {
+        let accessToken = object["access_token"] as! String
+        let refreshToken = object["refresh_token"] as! String
+        let defaults = UserDefaults.standard
+        defaults.set(accessToken, forKey: "accessToken")
+        defaults.set(refreshToken, forKey: "refreshToken")
     }
     
 }
