@@ -14,12 +14,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        let defaults = UserDefaults.standard
-        if let userAccessToken = defaults.object(forKey: "accessToken") {
-            print("User access token: \(userAccessToken)")
-        }
+
+        printUserDefaultsData()
+        
         return true
+    }
+    
+    func printUserDefaultsData() {
+        let defaults = UserDefaults.standard
+        let accessToken = defaults.value(forKey: "accessToken") as? String
+        let refreshToken = defaults.value(forKey: "refreshToken") as? String
+        let username = defaults.object(forKey: "username") as? String
+        
+        print("Access token: \(accessToken)")
+        print("Refresh token: \(refreshToken)")
+        print("Username: \(username)")
     }
     
 }
