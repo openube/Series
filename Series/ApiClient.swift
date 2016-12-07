@@ -35,14 +35,17 @@ extension ApiClient {
     // MARK: (1) Create a URL request
     func clientURLRequest(_ path: String, bodyParams params: [String: Any]? = nil, headers: [String: String]? = ["application/json": "application/json"]) -> URLRequest {
         var request = URLRequest(url: (URL(string: apiEndpoint)?.appendingPathComponent(path))!)
-        if let params = params, let paramString = convert(params) {
-            request.httpBody = paramString.data(using: String.Encoding.utf8)
+        
+        if let params = params,
+            let encodedParams = try? JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) {
+            request.httpBody = encodedParams
         }
         if let headers = headers {
             for (headerField, value) in headers {
                 request.setValue(value, forHTTPHeaderField: headerField)
             }
         }
+        
         return request
     }
     
@@ -71,8 +74,12 @@ extension ApiClient {
         
         let session = URLSession(configuration: .default)
         
+//        let body = request.httpBody
+//        let decodedBody = try? JSONSerialization.jsonObject(with: body!, options: .allowFragments)
+//        print(decodedBody as Any)
+        
         session.dataTask(with: request) { (data, response, error) -> Void in
-            // print((response as? HTTPURLResponse)?.statusCode)
+            print((response as? HTTPURLResponse)?.statusCode as Any)
             if let data = data {
                 print(data)
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
