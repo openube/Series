@@ -37,11 +37,19 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOF-I5-YF1">
-                                <rect key="frame" x="149" y="278" width="77" height="30"/>
+                                <rect key="frame" x="118" y="278" width="138" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Submit PIN"/>
+                                <state key="normal" title="Request User Token"/>
                                 <connections>
                                     <action selector="submitPinButtonPressed:" destination="pEY-wh-lBr" eventType="touchUpInside" id="GVC-Xi-r5d"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3G-ay-7dY">
+                                <rect key="frame" x="120" y="355" width="135" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Refresh User Token"/>
+                                <connections>
+                                    <action selector="refreshUserTokenButtonPressed:" destination="pEY-wh-lBr" eventType="touchUpInside" id="2gh-D3-etw"/>
                                 </connections>
                             </button>
                         </subviews>

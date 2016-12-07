@@ -33,7 +33,13 @@ class TraktLoginViewController: UIViewController {
     @IBAction func submitPinButtonPressed(_ sender: UIButton) {
         print("Submitted PIN: \(pinTextField.text)")
         trakt.requestAccessToken(withUserAuthorizationCode: pinTextField.text!) { (success, message: String?) in
-            print("Request \(success ? "succeeded" : "failed") with message: \(message)")
+            print("Request new access token \(success ? "succeeded" : "failed") with message: \(message)")
+        }
+    }
+    
+    @IBAction func refreshUserTokenButtonPressed(_ sender: UIButton) {
+        trakt.refreshAccessToken { (success, message: String?) in
+            print("Request refresh of access token \(success ? "succeeded" : "failed") with message: \(message)")
         }
     }
     

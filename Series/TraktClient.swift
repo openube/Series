@@ -56,9 +56,34 @@ struct TraktClient: ApiClient {
                 completion(false, "There was an error while requesting user access token")
             } else {
                 let accessToken = object?["access_token"] as! String
-                completion(true, "Access token received successfully with access token: \(object?["access_token"])")
                 let defaults = UserDefaults.standard
                 defaults.set(accessToken, forKey: "accessToken")
+                completion(true, "Access token received successfully with access token: \(object?["access_token"])")
+            }
+            
+        }
+    }
+    
+    func refreshAccessToken(completion: @escaping (_ success: Bool, _ message: String?) -> ()) {
+        let defaults = UserDefaults.standard
+        guard let oldAccessToken = defaults.value(forKey: "accessToken") as? String else {
+            completion(false, "Refresh access token: Error while reading the old token")
+            return
+        }
+        let params = ["refresh_token": oldAccessToken,
+                      "client_id": clientID,
+                      "client_secret": clientSecret,
+                      "redirect_uri": "urn:ietf:wg:oauth:2.0:oob",
+                      "grant_type": "refresh_token"]
+        let request = clientURLRequest("oauth/token", bodyParams: params, headers: headers)
+        post(request) { (success: Bool, object: [String : Any]?) in
+            if !success {
+                completion(false, "There was an error while refreshing the user access token")
+            } else {
+                let accessToken = object?["access_token"] as! String
+                let defaults = UserDefaults.standard
+                defaults.set(accessToken, forKey: "accessToken")
+                completion(true, "Access token refreshed successfully with access token: \(object?["access_token"])")
             }
             
         }

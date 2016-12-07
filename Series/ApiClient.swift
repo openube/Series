@@ -72,6 +72,7 @@ extension ApiClient {
         let session = URLSession(configuration: .default)
         
         session.dataTask(with: request) { (data, response, error) -> Void in
+            print((response as? HTTPURLResponse)?.statusCode)
             if let data = data {
                 print(data)
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
