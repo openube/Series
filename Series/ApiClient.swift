@@ -71,12 +71,7 @@ extension ApiClient {
     fileprivate func dataTask(_ request: URLRequest, method: String, completion: @escaping (_ success: Bool, _ object: [String: Any]?) -> ()) {
         var request = request
         request.httpMethod = method
-        
         let session = URLSession(configuration: .default)
-        
-//        let body = request.httpBody
-//        let decodedBody = try? JSONSerialization.jsonObject(with: body!, options: .allowFragments)
-//        print(decodedBody as Any)
         
         session.dataTask(with: request) { (data, response, error) -> Void in
             print((response as? HTTPURLResponse)?.statusCode as Any)
