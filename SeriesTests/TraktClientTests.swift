@@ -15,10 +15,13 @@ class TraktClientTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
         sut = TraktClient()
     }
     
+}
+
+// MARK: - Token Management
+extension TraktClientTests {
     func testUserDefaultsContainsTokens() {
         let defaults = UserDefaults.standard
         let accessToken = defaults.value(forKey: "accessToken") as? String
@@ -42,6 +45,47 @@ class TraktClientTests: XCTestCase {
         
         waitForExpectations(timeout: 10, handler: nil)
         XCTAssertTrue(refreshSucceeded, "Could not refresh user access token")
+    }
+    
+}
+
+// MARK: - Requesting user data
+extension TraktClientTests {
+    
+    func testGetUserSettings() {
+        let expect = expectation(description: "Response received")
+        var settingsReceived = false
+        
+        sut.getUserSettings { (success: Bool) in
+            expect.fulfill()
+            settingsReceived = success
+        }
+        
+        waitForExpectations(timeout: 10, handler: nil)
+        XCTAssertTrue(settingsReceived, "Could not receive user settings")
+    }
+    
+    func testUserDefaultsContainsUserName() {
+        let defaults = UserDefaults.standard
+        let username = defaults.object(forKey: "username") as? String
+        
+        print("Username: \(username)")
+        
+        XCTAssertNotNil(username, "User Defaults doesn't contain the username")
+
+    }
+    
+    func testGetWatchlist() {
+        let expect = expectation(description: "Response received")
+        var watchlistReceived = false
+        
+        sut.getWatchlist { (success: Bool) in
+            expect.fulfill()
+            watchlistReceived = success
+        }
+        
+        waitForExpectations(timeout: 10, handler: nil)
+        XCTAssertTrue(watchlistReceived, "Could not receive user watchlist data")
     }
     
 }

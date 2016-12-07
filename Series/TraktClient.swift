@@ -29,6 +29,11 @@ struct TraktClient: ApiClient {
                 "Content-Type":"application/json"]
     }
     
+}
+
+// MARK: - Authentication Token Management
+extension TraktClient {
+
     var authenticationRequestUrl: URL? {
         let authEndpoint = "https://trakt.tv/oauth/authorize"
         let params = ["response_type": "code",
@@ -91,6 +96,40 @@ struct TraktClient: ApiClient {
         let defaults = UserDefaults.standard
         defaults.set(accessToken, forKey: "accessToken")
         defaults.set(refreshToken, forKey: "refreshToken")
+    }
+    
+}
+
+// MARK: - Get user settings
+extension TraktClient {
+    
+    func getUserSettings(completion: @escaping (_ success: Bool) -> ()) {
+        let defaults = UserDefaults.standard
+        guard let accessToken = defaults.value(forKey: "accessToken") as? String else {
+            completion(false)
+            return
+        }
+        
+        var headers = requiredHeaders
+        headers["Authorization"] = "Bearer \(accessToken)"
+        
+        let request = clientURLRequest("users/settings", headers: headers)
+        get(request) { (success: Bool, object: [String: Any]?) in
+            guard success == true,
+                let userInfo = object?["user"] as? [String: Any],
+                let username = userInfo["username"] as? String
+                else { completion(false); return }
+            
+            let defaults = UserDefaults.standard
+            defaults.set(username, forKey: "username")
+            print(defaults.object(forKey: "username"))
+            
+            completion(true)
+        }
+    }
+    
+    func getWatchlist(completion: (_ success: Bool) -> ()) {
+        completion(false)
     }
     
 }
