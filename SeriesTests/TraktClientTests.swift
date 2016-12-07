@@ -11,12 +11,12 @@ import XCTest
 
 class TraktClientTests: XCTestCase {
     
-    var trakt: TraktClient!
+    var sut: TraktClient!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        trakt = TraktClient()
+        sut = TraktClient()
     }
     
 }

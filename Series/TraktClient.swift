@@ -23,7 +23,7 @@ struct TraktClient: ApiClient {
     let clientID = "4e576144747b7411b2f7029feb039edbf6baaca98b43b22db407a611745c32bf"
     let clientSecret = "b2b57762b71b57a8e66192ebb392a230c5d8ff9185beb204ab43ad6c9fce5f2b"
     
-    var headers: [String: String] {
+    var defaultHeaders: [String: String] {
         return ["trakt-api-version": "2",
                 "trakt-api-key": clientID,
                 "Content-Type":"application/json"]
@@ -75,7 +75,7 @@ struct TraktClient: ApiClient {
                       "client_secret": clientSecret,
                       "redirect_uri": "urn:ietf:wg:oauth:2.0:oob",
                       "grant_type": "refresh_token"]
-        let request = clientURLRequest("oauth/token", bodyParams: params, headers: headers)
+        let request = clientURLRequest("oauth/token", bodyParams: params, headers: defaultHeaders)
         post(request) { (success: Bool, object: [String : Any]?) in
             if !success {
                 completion(false, "There was an error while refreshing the user access token")
