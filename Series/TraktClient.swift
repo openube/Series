@@ -122,7 +122,6 @@ extension TraktClient {
             
             let defaults = UserDefaults.standard
             defaults.set(username, forKey: "username")
-            print(defaults.object(forKey: "username"))
             
             completion(true)
         }
