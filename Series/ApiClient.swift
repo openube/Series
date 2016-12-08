@@ -78,6 +78,7 @@ extension ApiClient {
             if let data = data {
                 print(data)
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
+                // print(json as Any)
                 if let json = json as? [String: Any],
                     let response = response as? HTTPURLResponse,
                     200...299 ~= response.statusCode {
