@@ -113,6 +113,8 @@ extension TraktClient {
         var headers = requiredHeaders
         headers["Authorization"] = "Bearer \(accessToken)"
         
+        
+        // TODO: slug should be used instead of username
         let request = clientURLRequest("users/settings", headers: headers)
         get(request) { (success: Bool, object: [String: Any]?) in
             guard success == true,
@@ -127,8 +129,32 @@ extension TraktClient {
         }
     }
     
-    func getWatchlist(completion: (_ success: Bool) -> ()) {
-        completion(false)
+    func updateWatchlistShows(completion: @escaping (_ success: Bool) -> ()) {
+        let defaults = UserDefaults.standard
+        guard let username = defaults.value(forKey: "username") as? String else {
+            completion(false)
+            return
+        }
+        
+        var request = clientURLRequest("users/\(username)/watchlist/shows", headers: requiredHeaders)
+        request.httpMethod = "GET"
+        
+        let session = URLSession(configuration: .default)
+        session.dataTask(with: request) { (data: Data?, response: URLResponse?, error:Error?) in
+            guard error == nil else { completion(false); return }
+            guard let response = response as? HTTPURLResponse,
+                200...299 ~= response.statusCode,
+                let data = data
+                else { completion(false); return }
+            
+            guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
+                let parsedJson = json as? [[String: Any]]
+                else { completion(false); return }
+            
+            print(parsedJson)
+            
+            completion(true)
+        }.resume()
     }
     
 }

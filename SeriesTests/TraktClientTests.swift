@@ -43,7 +43,7 @@ extension TraktClientTests {
             refreshSucceeded = success
         }
         
-        waitForExpectations(timeout: 10, handler: nil)
+        waitForExpectations(timeout: 20, handler: nil)
         XCTAssertTrue(refreshSucceeded, "Could not refresh user access token")
     }
     
@@ -61,7 +61,7 @@ extension TraktClientTests {
             settingsReceived = success
         }
         
-        waitForExpectations(timeout: 10, handler: nil)
+        waitForExpectations(timeout: 20, handler: nil)
         XCTAssertTrue(settingsReceived, "Could not receive user settings")
     }
     
@@ -75,16 +75,16 @@ extension TraktClientTests {
 
     }
     
-    func testGetWatchlist() {
+    func testUpdateWatchlistShows() {
         let expect = expectation(description: "Response received")
         var watchlistReceived = false
         
-        sut.getWatchlist { (success: Bool) in
+        sut.updateWatchlistShows { (success: Bool) in
             expect.fulfill()
             watchlistReceived = success
         }
         
-        waitForExpectations(timeout: 10, handler: nil)
+        waitForExpectations(timeout: 20, handler: nil)
         XCTAssertTrue(watchlistReceived, "Could not receive user watchlist data")
     }
     
